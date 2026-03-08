@@ -6,6 +6,8 @@ import com.example.demo.dto.UserRequestDto;
 import com.example.demo.dto.UserResponseDto;
 import com.example.demo.util.Aes256Util;
 import com.example.demo.util.ValidationUtil;
+import com.example.demo.repository.UserRepository;
+
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -89,5 +91,30 @@ public class UsersApiApp {
         UserResponseDto response = UserResponseDto.from(user);
         System.out.println("\nDTO de salida (UserResponseDto):");
         System.out.println(response);
+
+        // 6. Instanciar el repositorio
+        UserRepository repo = new UserRepository();
+
+        System.out.println("\nUsuarios semilla en el repositorio:");
+        repo.findAll().forEach(System.out::println);
+
+        // 7. Guardar el nuevo usuario creado desde el DTO
+        repo.save(user);
+        System.out.println("\nUsuarios después de insertar a Milton:");
+        repo.findAll().forEach(System.out::println);
+
+        // 8. Buscar por RFC
+        System.out.println("\nBuscar por RFC SAMM000229XYZ:");
+        repo.findByTaxId("SAMM000229XYZ")
+            .ifPresentOrElse(
+                u -> System.out.println("Encontrado: " + u),
+                () -> System.out.println("No se encontró usuario con ese RFC")
+            );
+
+        // 9. Eliminar por ID
+        UUID idMilton = user.getId();
+        repo.deleteById(idMilton);
+        System.out.println("\nUsuarios después de eliminar a Milton:");
+        repo.findAll().forEach(System.out::println);
     }
 }

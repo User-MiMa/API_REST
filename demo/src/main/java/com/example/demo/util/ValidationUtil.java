@@ -84,6 +84,10 @@ public final class ValidationUtil {
         .compile(UserRequestDto.RFC_REGEX, Pattern.CASE_INSENSITIVE)
         .matcher(normalized);
 
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException("RFC inválido: formato no coincide con el patrón esperado");
+        }
+
         // Groups: 1=pat1 y pat2, 2=mat, 3=name, 4=YY, 5=MM, 6=DD, 7=homoclave
         final String yearPart  = matcher.group(4);
         final String monthPart = matcher.group(5);
@@ -145,9 +149,6 @@ public final class ValidationUtil {
      *                                  al menos un nombre dado y dos apellidos.
      */
     public static void validateFullName(final String fullName) {
-        if (fullName == null || fullName.isBlank()) {
-            throw new IllegalArgumentException("fullName no debe ser null o vac´´io");
-        }
 
         final String trimmed = fullName.trim();
 
