@@ -80,7 +80,8 @@ public class UserRequestDto {
      * se realiza en {@code ValidationUtil} y {@code UserService} respectivamente.</p>
      */
 
-    public static final String RFC_REGEX = "^[A-ZÑ&]{4}\\d{6}[A-Z0-9]{3}$";
+    public static final String RFC_REGEX = 
+    "^([A-ZÑ]{2})([A-ZÑ]{1})([A-ZÑ]{1})(\\d{2})(\\d{2})(\\d{2})([A-Z0-9]{3})$";
 
     @NotBlank(message = "RFC es requerido")
     @Pattern(

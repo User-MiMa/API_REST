@@ -148,7 +148,7 @@ public class User {
     /**
      * Almacena el teléfono tal como viene.
      * La validación de formato "AndresFormat" (country code + 10 dígitos) se delega
-     * a {@code util/ValidationUtil#validatePhone(String)}.
+     * a {@code dto/UserRequestDto}.
      */
     public void setPhone(String phone) {
         this.phone = phone;
