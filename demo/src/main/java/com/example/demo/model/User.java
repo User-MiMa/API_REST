@@ -38,8 +38,8 @@ public class User {
 
     /**
      * Teléfono en "AndresFormat": código de país + 10 dígitos.
-     * Ejemplo: "+52 5512345678" o la convención definida en {@code ValidationUtil}.
-     * La validación de formato se delega a {@code util/ValidationUtil}.
+     * Ejemplo: "+52 5512345678" o la convención definida en {@code UserRequestDto}.
+     * La validación de formato se delega a {@code dto/UserRequestDto}.
      */
     private String phone;
 

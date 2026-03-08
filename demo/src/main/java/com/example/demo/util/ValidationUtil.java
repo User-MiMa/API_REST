@@ -98,6 +98,28 @@ public final class ValidationUtil {
     }
 
     // =========================================================================
+    // Validación de teléfono (AndresFormat)
+    // =========================================================================
+
+    /**
+     * Valida un número de teléfono en AndresFormat.
+     *
+     * @param phone La cadena de teléfono a validar.
+     * @throws IllegalArgumentException si es nulo, está en blanco o no coincide con AndresFormat.
+     */
+
+
+    public static void validatePhone(String phone) {
+        if (phone == null || phone.isBlank()) {
+         throw new IllegalArgumentException("telefono es requerido");
+        }
+        if (!phone.matches(UserRequestDto.PHONE_REGEX)) {
+            throw new IllegalArgumentException(
+            "telefono debe tener el formato: signo más seguido de código de país seguido de 10 dígitos numérticos (ej. +525512345678)");
+        }
+    }
+
+    // =========================================================================
     // Validación de nombre completo
     // =========================================================================
 

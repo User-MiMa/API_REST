@@ -54,9 +54,12 @@ public class UserRequestDto {
      * <p>El regex valida la estructura básica; la validación semántica completa
      * (código de país real, operadora, etc.) se delega a {@code ValidationUtil}.</p>
      */
+
+    public static final String PHONE_REGEX = "^\\+\\d{1,3}\\d{10}$";
+
     @NotBlank(message = "telefono es requerido")
     @Pattern(
-        regexp  = "^\\+\\d{1,3}\\d{10}$",
+        regexp  = PHONE_REGEX,
         message = "telefono debe tener el formato: signo más seguido de código de país seguido de 10 dígitos numérticos (ej. +525512345678)"
     )
     private String phone;
