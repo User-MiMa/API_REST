@@ -104,6 +104,7 @@ public class UserService {
         ValidationUtil.validateTaxId(dto.getTaxId());
         ValidationUtil.validatePhone(dto.getPhone());
         ValidationUtil.validateFullName(dto.getName());
+        ValidationUtil.validateRfcMatchesName(dto.getTaxId(), dto.getName());
 
         // Verificar unicidad del RFC en el repositorio
         ensureTaxIdIsUnique(dto.getTaxId(), null);
