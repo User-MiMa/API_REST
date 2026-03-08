@@ -34,7 +34,7 @@ public class UserService {
     private static final ZoneId MADAGASCAR_TZ = ZoneId.of("UTC+3");
 
     // Separador del parámetro de filtro: "atributo+operador+valor"
-    private static final String FILTER_DELIMITER = "\\+";
+    private static final String FILTER_DELIMITER = " ";
 
     private final UserRepository userRepository;
 
@@ -265,7 +265,11 @@ public class UserService {
             case "id"        -> user -> user.getId() != null ? user.getId().toString() : null;
             case "email"     -> User::getEmail;
             case "name"      -> User::getName;
-            case "phone"     -> User::getPhone;
+            case "phone"     -> (User user) -> {
+            String phone = user.getPhone();
+                // quitar '+' inicial si existe
+                return (phone != null && phone.startsWith("+")) ? phone.substring(1) : phone;
+            };
             case "taxid"     -> User::getTaxId;
             case "createdat" -> user -> user.getCreatedAt() != null
                                         ? user.getCreatedAt().toString() : null;

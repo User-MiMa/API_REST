@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import com.example.demo.model.Address;
 import com.example.demo.model.User;
 import com.example.demo.util.Aes256Util;
+import org.springframework.stereotype.Repository;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -22,6 +23,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * <p>Se usa {@link CopyOnWriteArrayList} para garantizar acceso seguro
  * en entornos con múltiples hilos (thread-safe reads + writes).</p>
  */
+@Repository
 public class UserRepository {
 
     // Zona horaria de Madagascar requerida por el sistema
@@ -101,8 +103,6 @@ public class UserRepository {
         if (user == null) {
             throw new IllegalArgumentException("El usuario a guardar no puede ser null");
         }
-
-        System.out.println("**********************************************************************RFC guardado: " + user.getTaxId());
 
 
         // Elimina versión anterior si existe (update), luego inserta
