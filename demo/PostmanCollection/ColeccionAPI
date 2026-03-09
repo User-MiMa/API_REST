@@ -1,0 +1,190 @@
+{
+  "info": {
+    "_postman_id": "bcafaaff-690c-4e6c-9bcc-0231892ccec2",
+    "name": "ColeccionAPI",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53034070",
+    "_collection_link": "https://go.postman.co/collection/53034070-bcafaaff-690c-4e6c-9bcc-0231892ccec2?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "GET Consultar Usuarios",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST Crear Usuario",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"Pato_E@correo.com\",\r\n  \"name\": \"Elsa Pato Ramírez\",\r\n  \"phone\": \"+520011223344\",\r\n  \"password\": \"ChurroMutante1\",\r\n  \"taxId\": \"PARE000229UY1\",\r\n  \"addresses\": [\r\n    {\r\n      \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n      \"name\": \"casa\",\r\n      \"street\": \"Piedra Voladora\",\r\n      \"countryCode\": \"Uy\"\r\n    }\r\n  ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Ordenar Usuario por Criterio",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/users?sortedBy=email",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users"
+          ],
+          "query": [
+            {
+              "key": "sortedBy",
+              "value": "email"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Filtrar Usuarios por Criterio",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/users?filter=taxId+co+PA",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users"
+          ],
+          "query": [
+            {
+              "key": "filter",
+              "value": "taxId+co+PA"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PATCH Actualizar Datos de Usuario",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"taxId\": \"PARE000229U1Y\",\r\n    \"phone\":\"+521122334455\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/users/6e2a6e05-8193-48b0-a117-c22a279b429e",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "6e2a6e05-8193-48b0-a117-c22a279b429e"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST Login de Usuario ",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"taxId\": \"PARE000229U1Y\",\r\n  \"password\": \"ChurroMutante1\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/users/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE Borrar Usuario",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/users/6e2a6e05-8193-48b0-a117-c22a279b429e",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "6e2a6e05-8193-48b0-a117-c22a279b429e"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
