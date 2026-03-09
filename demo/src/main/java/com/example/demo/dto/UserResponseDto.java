@@ -55,7 +55,7 @@ public class UserResponseDto {
     /** Nombre completo. */
     private String name;
 
-    /** Teléfono en AndresFormat. */
+    /** Teléfono en E.164. */
     private String phone;
 
     /**

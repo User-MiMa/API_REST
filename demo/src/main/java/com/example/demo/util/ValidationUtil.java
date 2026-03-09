@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.text.Normalizer;
 
 import com.example.demo.dto.UserRequestDto;
 
@@ -98,14 +99,14 @@ public final class ValidationUtil {
     }
 
     // =========================================================================
-    // Validación de teléfono (AndresFormat)
+    // Validación de teléfono (E.164t)
     // =========================================================================
 
     /**
-     * Valida un número de teléfono en AndresFormat.
+     * Valida un número de teléfono en E.164.
      *
      * @param phone La cadena de teléfono a validar.
-     * @throws IllegalArgumentException si es nulo, está en blanco o no coincide con AndresFormat.
+     * @throws IllegalArgumentException si es nulo, está en blanco o no coincide con E.164.
      */
 
 
@@ -214,10 +215,11 @@ public final class ValidationUtil {
         final String apellidoMaterno = tokens[tokens.length - 1];
         final String nombre          = tokens[0];
 
+
         final String expectedPrefix =
-            apellidoPaterno.substring(0, Math.min(2, apellidoPaterno.length())).toUpperCase()
-            + apellidoMaterno.substring(0, 1).toUpperCase()
-            + nombre.substring(0, 1).toUpperCase();
+            normalizeText(apellidoPaterno).substring(0, Math.min(2, apellidoPaterno.length())).toUpperCase()
+            + normalizeText(apellidoMaterno).substring(0, 1).toUpperCase()
+            + normalizeText(nombre).substring(0, 1).toUpperCase();
 
         final String actualPrefix = normalizedRfc.substring(0, 4);
 
@@ -228,7 +230,7 @@ public final class ValidationUtil {
             );
         }
 
-    }  
+    } 
 
     // =========================================================================
     // Auxiliares privados
@@ -285,5 +287,21 @@ public final class ValidationUtil {
                     + ", lo que significa que la persona tiene menos de " + MINIMUM_AGE_YEARS + " años de edad. "
                     + "Los usuarios deben tener al menos " + MINIMUM_AGE_YEARS + " años.");
         }
+    }
+
+    /**
+     * Valida que el RFC proporcionado coincida con las iniciales derivadas del nombre completo.
+     * 
+     * El cálculo de las iniciales ignora acentos y convierte todo a mayúsculas para asegurar
+     * una comparación consistente con el prefijo del RFC.
+     *
+     * @param taxId     Cadena RFC original que se desea validar.
+     * @param fullName  Nombre completo de la persona (se tomarán nombre, apellido paterno y materno).
+     * @throws IllegalArgumentException si el prefijo del RFC no coincide con las iniciales esperadas.
+     */
+        private static String normalizeText(String text) {
+        return Normalizer.normalize(text, Normalizer.Form.NFD)
+                         .replaceAll("\\p{M}", "") // elimina marcas diacríticas
+                         .toUpperCase();
     }
 }

@@ -357,7 +357,7 @@ public class UserService {
      *                  Pasar {@code null} en creaciones nuevas.
      * @throws IllegalArgumentException si el RFC ya está registrado por otro usuario.
      */
-    private void ensureTaxIdIsUnique(final String taxId, final UUID excludeId) {
+    public void ensureTaxIdIsUnique(final String taxId, final UUID excludeId) {
         final Optional<User> existing = userRepository.findByTaxId(taxId);
 
         final boolean takenByAnotherUser = existing.isPresent()

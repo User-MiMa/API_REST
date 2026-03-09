@@ -82,7 +82,7 @@ public class GlobalExceptionHandler {
      * {
      *   "timestamp": "2024-06-10 08:15",
      *   "status":    400,
-     *   "message":   "email: must be a valid email address; phone: phone must follow AndresFormat"
+     *   "message":   "email: must be a valid email address; phone: phone must follow E.164"
      * }
      * }</pre>
      *

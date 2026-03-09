@@ -48,7 +48,7 @@ public class UserRequestDto {
     private String name;
 
     /**
-     * Teléfono en "AndresFormat": código de país seguido de exactamente 10 dígitos.
+     * Teléfono en "E.164: código de país seguido de exactamente 10 dígitos.
      * Ejemplo válido: "+525512345678".
      *
      * <p>El regex valida la estructura básica; la validación semántica completa

@@ -37,7 +37,7 @@ public class User {
     private String name;
 
     /**
-     * Teléfono en "AndresFormat": código de país + 10 dígitos.
+     * Teléfono en "E.164: código de país + 10 dígitos.
      * Ejemplo: "+52 5512345678" o la convención definida en {@code UserRequestDto}.
      * La validación de formato se delega a {@code dto/UserRequestDto}.
      */
@@ -85,7 +85,7 @@ public class User {
      * @param id        Identificador único. Si es {@code null}, se genera uno automáticamente.
      * @param email     Correo electrónico.
      * @param name      Nombre completo.
-     * @param phone     Teléfono en AndresFormat.
+     * @param phone     Teléfono en E.164.
      * @param password  Contraseña ya cifrada en AES-256.
      * @param taxId     RFC único del usuario.
      * @param createdAt Timestamp de creación (zona Africa/Antananarivo).
@@ -147,7 +147,7 @@ public class User {
 
     /**
      * Almacena el teléfono tal como viene.
-     * La validación de formato "AndresFormat" (country code + 10 dígitos) se delega
+     * La validación de formato "E.164" (country code + 10 dígitos) se delega
      * a {@code dto/UserRequestDto}.
      */
     public void setPhone(String phone) {
